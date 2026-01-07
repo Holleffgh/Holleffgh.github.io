@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Behold! the holy grail</title>
+<style> 
+.grid {
+  display: grid;
+height: 100vh;
+  grid-template-areas:
+    'head head head'
+    'menu main death_to_menu'
+    'foot foot foot';
+
+  grid-template-rows: 100px 1fr 200px;
+  grid-template-columns: 200px 1fr 200px;
+}
+
+#header{
+	grid-area: head;
+	background-color: purple;
+	text-align: center; 
+	font-size: 24px;
+	color: white;
+}
+#mnu{
+grid-area: menu;
+background-color: blue;
+}
+#menu2{
+	grid-area: death_to_menu;
+	background-color: blue;
+}
+#bottom{
+	grid-area: foot;
+	background-color: green;
+
+</style>
+	</head>
+	<body>
+		<div class="grid">
+			<div id="header"The holy grail></div>
+			<div id="mnu"></div>
+			<div id="menu2"></div>
+			<div id="bottom"></div>
+		</div>
+	</body>
+</html>
