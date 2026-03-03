@@ -16,27 +16,38 @@
 			let time = 0;
 			let x = 0;
 			let y = 30;
-			ctx.fiillStyle = "red";
 			function animate(){
 			time = time + 1;
-			
+			ctx.clearRect (0,0,800,800);	
 				if(time > 100){
 				y = y + 1;
 				ctx.clearRect (0,0,800,800);
-				ctx.fillstyle = "green";
+				ctx.fillStyle = "green";
 				ctx.fillRect(y,600,50,50);
 					ctx.fill();
 			
 				}
 				if(time > 60){
 				x = x + 5;
-				ctx.clearRect (0,0,800,800);
 				ctx.fillStyle = "red";
 				ctx.fillRect(x,300,50,50);
 					ctx.fill();
 			
 				}
-
+				if(time > 150){
+				x = x + 10;
+				ctx.fillStyle = "red";
+				ctx.fillRect(x,300,50,50);
+					ctx.fill();
+			
+				}
+				if(time > 200){
+				x = x + 3;
+				ctx.fillStyle = "red";
+				ctx.fillRect(x,100,200,200);
+					ctx.fill();
+			
+				}
 				requestAnimationFrame(animate);
 			}
 
