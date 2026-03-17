@@ -6,7 +6,8 @@ let money = 10001;
 let min = 0;
 let hr = 0;
 let haveFish = false;
-
+let fishHungry = false;
+let cleanFish = false;
 
 //If you need, add any "helper" functions here
 if(min < 60){
@@ -15,7 +16,7 @@ if(min < 60){
 }
 
 //Make one function for each location
-function Hallway() {
+function hallway() {
     clear();
     print("\nYou are in the hall!");
     print("\nWhere do you want to go next? Say one of these choices:" +
@@ -23,28 +24,33 @@ function Hallway() {
     	"\n\tOutside");
     
     function processInput(input){
-        if (input.toLowerCase() === "locationb") {
-            locationB();
-        } else {
+        if (input.stoLowerCase() === "fishroom") {
+            fishroom();
+        } 
+	    else if(input.stoLowerCase() === "outside") {
+            outside();
+        } 
+
+	 else {
             stayHere();
-            waitThenCall(locationA);
+            waitThenCall(hallway);
         }
     }
     waitForInput(processInput);
 }
 
-function locationB() {
+function fishroom() {
     clear();
-    print("\nYou are in location B!");
+    print("\nfishroom");
     print("\nWhere do you want to go next? Say one of these choices:" +
-        "\n\tlocationA");
+        "\n\tHallway");
     
     function processInput(input){
-        if (input.toLowerCase() === "locationa") {
-            locationA();
+        if (input.toLowerCase() === "hallway") {
+            hallway();
         } else {
             stayHere();
-            waitThenCall(locationB);
+            waitThenCall(fishroom);
         }
     }
     waitForInput(processInput);
@@ -59,7 +65,7 @@ function start(){
 "often at work. your goal is to get him a freind. Press any key to start");
 
     function processInput(input){
-            Hallway();
+            hallway();
     }
     waitForInput(processInput);
 }
