@@ -18,16 +18,16 @@ if(min < 60){
 //Make one function for each location
 function hallway() {
     clear();
-    print("\nYou are in the hall!");
+    print("\nYou are in the hall!"); 
     print("\nWhere do you want to go next? Say one of these choices:" +
         "\n\tFishroom" +
     	"\n\tOutside");
     
     function processInput(input){
-        if (input.stoLowerCase() === "fishroom") {
+        if (input.toLowerCase() == "fishroom") {
             fishroom();
         } 
-	    else if(input.stoLowerCase() === "outside") {
+	    else if(input.stoLowerCase() == "outside") {
             outside();
         } 
 
@@ -41,12 +41,12 @@ function hallway() {
 
 function fishroom() {
     clear();
-    print("\nfishroom");
+    print("\nYou are in the Fishroom");
     print("\nWhere do you want to go next? Say one of these choices:" +
         "\n\tHallway");
     
     function processInput(input){
-        if (input.toLowerCase() === "hallway") {
+        if (input.toLowerCase() == "hallway") {
             hallway();
         } else {
             stayHere();
@@ -55,6 +55,33 @@ function fishroom() {
     }
     waitForInput(processInput);
 }
+function outside() {
+    clear();
+    print("\nYou are outside!");
+    print("\nWhere do you want to go next? Say one of these choices:" +
+        "\n\tHallway" +
+    	"\n\tPetSmart" +
+    	"\n\tVeryBoringJob");
+    
+    function processInput(input){
+        if (input.toLowerCase() == "hallway") {
+            hallway();
+        } 
+	    else if(input.stoLowerCase() == "petsmart") {
+            petsmart();
+        } 
+	  else if(input.stoLowerCase() == "veryboringjob") {
+            veryboringjob();
+        } 
+
+	 else {
+            stayHere();
+            waitThenCall(hallway);
+        }
+    }
+    waitForInput(processInput);
+}
+
 
 //finally, make sure you customize this to tell it what should happen at the
 //very start. For this simple example, any input will bring you
