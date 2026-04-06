@@ -3,11 +3,17 @@ const ctx = canvas.getContext("2d");
 
 const ballRadius = 10;
 
-let x = Math.random()*800;
-let y = Math.random()*800;
+const balls = [];
 
-let dx = 2;
-let dy = -2;
+for(let i = 0; i < 100; i=i+1){
+const ball = {
+	x:Math.random()*800,
+	y:Math.random()*800,
+	dx:2,
+	dy:-2
+};
+balls.push(ball);
+}
 
 const paddleHeight = 10;
 const paddleWidth = 75;
@@ -18,8 +24,8 @@ let leftPressed = false;
 
 let interval = 0;
 
-const brickRowCount = 3;
-const brickColumnCount = 5;
+const brickRowCount = 5;
+const brickColumnCount = 9;
 const brickWidth = 75;
 const brickHeight = 20;
 const brickPadding = 10;
@@ -32,6 +38,12 @@ function drawBricks(){
     for (let r = 0; r < brickRowCount; r++) {
       //TODO: use the variables above to write the code that draws the bricks.
       //this should be a single function call to ctx.fillRect();
+	   ctx.fillRect(
+brickOffsetLeft+c*(brickWidth+brickPadding),
+		   brickOffsetTop+r*(brickHeight+brickPadding),
+		   brickWidth,
+		   brickHeight
+	   )
     }
   }
 }
@@ -56,10 +68,13 @@ document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 
 function drawBall() {
+
+	for(const ball of balls){
   ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+  ctx.arc(ball.x, ball.y, ballRadius, 0, Math.PI * 2);
   ctx.fill();
   ctx.closePath();
+}
 }
 function drawPaddle() {
   ctx.beginPath();
@@ -73,14 +88,14 @@ function draw() {
   drawBall();
   drawPaddle();
   drawBricks();
-
-  if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-    dx = -dx;
+for(ball of balls){
+  if (ball.x + ball.dx > canvas.width - ballRadius ||ball. x + ball.dx < ballRadius) {
+	  ball.dx = -ball.dx;
   }
-  if (y + dy < ballRadius || y + dy > canvas.height - ballRadius) {
-    dy = -dy;
+  if (ball.y + ball.dy < ballRadius || ball.y + ball.dy > canvas.height - ballRadius) {
+    ball.dy = -ball.dy;
   }
-
+}
   if (rightPressed && paddleX < canvas.width - paddleWidth) {
     paddleX += 7;
   } else if (leftPressed && paddleX > 0) {
@@ -88,9 +103,10 @@ function draw() {
   }
 
   //move the ball
-  x += dx;
-  y += dy;
-
+for(ball of balls){
+  ball.x += ball.dx;
+  ball.y += ball.dy;
+}
   requestAnimationFrame(draw);
 }
 
